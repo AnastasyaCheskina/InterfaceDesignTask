@@ -15,20 +15,20 @@
             <GroupBox Header="Введите данные о себе" Margin="0 0 0 20">
                 <StackPanel>
                     <GroupBox Header="Введите имя">
-                        <TextBox></TextBox>
+                        <TextBox x:Name="txtNameUpload"></TextBox>
                     </GroupBox>
                     <GroupBox Header="Введите дату рождения">
-                        <DatePicker></DatePicker>
+                        <DatePicker x:Name="dataUpload"></DatePicker>
                     </GroupBox>
                     <GroupBox Header="Введите пол">
-                        <ListBox>
+                        <ListBox x:Name="listSexUpload">
                             <TextBlock Text="Мужской"></TextBlock>
                             <TextBlock Text="Женский"></TextBlock>
                             <TextBlock Text="Другой"></TextBlock>
                         </ListBox>
                     </GroupBox>
                     <GroupBox Header="Доп. инфо">
-                        <ListBox>
+                        <ListBox x:Name="listInformationUpload">
                             <CheckBox Content="Добрый"></CheckBox>
                             <CheckBox Content="Отзывчивый"></CheckBox>
                             <CheckBox Content="Скромный"></CheckBox>
@@ -36,28 +36,28 @@
                     </GroupBox>
                 </StackPanel>
             </GroupBox>
-            <Button Content="Записать" HorizontalAlignment="Left"></Button>
+            <Button Content="Записать" HorizontalAlignment="Left" x:Name="btnRecord" Click="btnRecord_Click"></Button>
         </StackPanel>
         <StackPanel Grid.Column="1">
             <GroupBox Header="Считывание информации" Margin="0 0 0 20">
                 <StackPanel>
                     <GroupBox Header="Имя">
-                        <TextBlock></TextBlock>
+                        <TextBlock x:Name="txtNameOutput"></TextBlock>
                     </GroupBox>
                     <GroupBox Header="Дата рождения">
-                        <TextBlock></TextBlock>
+                        <TextBlock x:Name="txtDataOutput"></TextBlock>
                     </GroupBox>
                     <GroupBox Header="Пол">
-                        <TextBlock></TextBlock>
+                        <TextBlock x:Name="txtSexOutput"></TextBlock>
                     </GroupBox>
                     <GroupBox Header="Дополнительная информация">
-                        <TextBlock></TextBlock>
+                        <TextBlock x:Name="txtInformationOutput"></TextBlock>
                     </GroupBox>
                 </StackPanel>
             </GroupBox>
             <StackPanel Orientation="Horizontal">
-                <Button Content="Прочитать" Margin="0 0 10 0"></Button>
-                <Button Content="Вывести следующую"></Button>
+                <Button Content="Прочитать" Margin="0 0 10 0" x:Name="btnRead" Click="btnRead_Click"></Button>
+                <Button Content="Вывести следующую" x:Name="btnNext" Click="btnNext_Click"></Button>
             </StackPanel>
         </StackPanel>
     </Grid>

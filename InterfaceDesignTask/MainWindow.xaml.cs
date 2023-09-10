@@ -24,5 +24,25 @@ namespace InterfaceDesignTask
         {
             InitializeComponent();
         }
+
+        private void btnRecord_Click(object sender, RoutedEventArgs e)
+        {
+            var list = listInformationUpload.SelectedItems;
+            if (txtNameUpload.Text != "" && dataUpload.Text != "" && listSexUpload.SelectedItem != null && listInformationUpload.SelectedItems != null)
+            {
+
+            }
+            else MessageBox.Show("Вы заполнили не все поля. Заполните поля и повторите попытку");
+        }
+
+        private void btnRead_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnNext_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
