@@ -21,9 +21,7 @@
                         <DatePicker x:Name="dataUpload"></DatePicker>
                     </GroupBox>
                     <GroupBox Header="Введите пол">
-                        <ListBox x:Name="listSexUpload">
-                            
-                        </ListBox>
+                        <ListBox x:Name="listSexUpload"></ListBox>
                     </GroupBox>
                     <GroupBox Header="Доп. инфо">
                         <ListBox x:Name="listInformationUpload">
