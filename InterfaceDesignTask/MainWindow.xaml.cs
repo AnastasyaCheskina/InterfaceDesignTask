@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -59,44 +60,71 @@ namespace InterfaceDesignTask
 
         private void btnRecord_Click(object sender, RoutedEventArgs e)
         {
-            List<CheckBox> checkedItems = new List<CheckBox>(); //лист для хранения выбранных пользователем элементов
-            foreach (var item in listInformationUpload.Items.OfType<CheckBox>())
+            try
             {
-                if (item.IsChecked == true)
+                List<CheckBox> checkedItems = new List<CheckBox>(); //лист для хранения выбранных пользователем элементов
+                foreach (var item in listInformationUpload.Items.OfType<CheckBox>())
                 {
-                    checkedItems.Add(item);
+                    if (item.IsChecked == true)
+                    {
+                        checkedItems.Add(item);
+                    }
                 }
+                if (txtNameUpload.Text != "" && dataUpload.Text != "" && listSexUpload.SelectedItem != null && checkedItems.Count > 0)
+                {
+                    string name = txtNameUpload.Text;
+                    if (name.Contains(" "))
+                    {
+                        name = name.Replace(' ', '_');
+                        MessageBox.Show("Пробелы во введенном имени были заменены на нижнее подчеркивание");
+                    }
+                    string newData = name + " " + dataUpload.Text + " " + listSexUpload.SelectedItem.ToString() + " ";
+                    foreach (var item in checkedItems)
+                    {
+                        newData += item.Content.ToString() + " ";
+                    }
+                    WriteLineAtFile(relativePath, newData);
+                    MessageBox.Show("Данные успешно записаны");
+                }
+                else MessageBox.Show("Вы заполнили не все поля. Заполните поля и повторите попытку");
             }
-            if (txtNameUpload.Text != "" && dataUpload.Text != "" && listSexUpload.SelectedItem != null && checkedItems.Count > 0)
+            catch (Exception ex)
             {
-                string newData = txtNameUpload.Text + " " + dataUpload.Text + " " + listSexUpload.SelectedItem.ToString() + " ";
-                foreach (var item in checkedItems)
-                {
-                    newData += item.Content.ToString() + " ";
-                }
-                WriteLineAtFile(relativePath,newData);
-                MessageBox.Show("Данные успешно записаны");
+                MessageBox.Show("Возникла непредвиденная ошибка, перезапустите программу и повторите попытку");
             }
-            else MessageBox.Show("Вы заполнили не все поля. Заполните поля и повторите попытку");
         }
 
         private void btnRead_Click(object sender, RoutedEventArgs e)
         {
-            if (allStringsAtFile.Count > 0)
+            try
             {
-                GetData();
-                btnRead.IsEnabled = false;
+                if (allStringsAtFile.Count > 0)
+                {
+                    GetData();
+                    btnRead.IsEnabled = false;
+                }
+                else
+                {
+                    MessageBox.Show("Данные в файле закончились. Добавьте новые данные или перезапустите программу");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Данные в файле закончились. Добавьте новые данные или перезапустите программу");
+                MessageBox.Show("Возникла непредвиденная ошибка, перезапустите программу и повторите попытку");
             }
         }
 
         private void btnNext_Click(object sender, RoutedEventArgs e)
         {
-            if (allStringsAtFile.Count > 0) GetData();
-            else MessageBox.Show("Данные в файле закончились. Добавьте новые данные или перезапустите программу");
+            try
+            {
+                if (allStringsAtFile.Count > 0) GetData();
+                else MessageBox.Show("Данные в файле закончились. Добавьте новые данные или перезапустите программу");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Возникла непредвиденная ошибка, перезапустите программу и повторите попытку");
+            }
         }
 
         private void GetData() //метод получения данных и их вывода для пользователя
