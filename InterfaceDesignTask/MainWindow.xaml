@@ -22,9 +22,7 @@
                     </GroupBox>
                     <GroupBox Header="Введите пол">
                         <ListBox x:Name="listSexUpload">
-                            <TextBlock Text="Мужской"></TextBlock>
-                            <TextBlock Text="Женский"></TextBlock>
-                            <TextBlock Text="Другой"></TextBlock>
+                            
                         </ListBox>
                     </GroupBox>
                     <GroupBox Header="Доп. инфо">
